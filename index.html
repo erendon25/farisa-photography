@@ -142,17 +142,20 @@
                 <p class="section-subtitle">Elevando la estética visual a través de un enfoque conceptual y técnico.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal">
-                    <h3>Editorial</h3>
-                    <p>Fotografía para revistas y marcas de moda. Un enfoque artístico que rompe lo convencional.</p>
+                <div class="service-card reveal" data-service="editorial">
+                    <h3>Moda & Editorial</h3>
+                    <p>Historias narradas a través de la estética, el color y la composición vanguardista.</p>
+                    <button class="service-btn">Ver Portfolio</button>
                 </div>
-                <div class="service-card reveal">
+                <div class="service-card reveal" data-service="eventos">
                     <h3>Eventos</h3>
                     <p>Bodas de lujo y eventos corporativos capturados con una mirada documental y sofisticada.</p>
+                    <button class="service-btn">Ver Portfolio</button>
                 </div>
-                <div class="service-card reveal">
+                <div class="service-card reveal" data-service="arquitectura">
                     <h3>Arquitectura</h3>
                     <p>Espacios, líneas y luces. Capturamos la intención detrás de cada estructura.</p>
+                    <button class="service-btn">Ver Portfolio</button>
                 </div>
             </div>
         </div>
@@ -299,7 +302,21 @@
         </svg>
     </a>
 
-    <script type="module" src="script.js"></script>
+    <!-- Modal para Servicios -->
+    <div id="service-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-gallery" class="modal-gallery">
+                <!-- Las fotos se cargarán dinámicamente -->
+            </div>
+            <div class="modal-info">
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>

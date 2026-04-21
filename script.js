@@ -194,4 +194,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // --- Lógica de Modal para Servicios ---
+    const serviceData = {
+        editorial: {
+            title: "Moda & Editorial",
+            description: "Creación de narrativas visuales de alto impacto para marcas y publicaciones. Nos enfocamos en la estética vanguardista y la perfección técnica.",
+            images: [
+                "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&q=80"
+            ]
+        },
+        eventos: {
+            title: "Eventos & Bodas",
+            description: "Documentación elegante de los momentos más importantes. Un enfoque cinematográfico que captura la emoción genuina y los detalles de lujo.",
+            images: [
+                "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1465495910483-db4428cca99a?auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80"
+            ]
+        },
+        arquitectura: {
+            title: "Arquitectura & Lux",
+            description: "Resaltamos la simetría, la iluminación y la esencia del espacio arquitectónico. Fotografía de precisión para estudios y constructoras.",
+            images: [
+                "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1503387762-592dea58ef21?auto=format&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
+            ]
+        }
+    };
+
+    const modal = document.getElementById('service-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-description');
+    const modalGallery = document.getElementById('modal-gallery');
+    const closeModal = document.querySelector('.close-modal');
+
+    document.querySelectorAll('.service-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const serviceKey = btn.closest('.service-card').dataset.service;
+            const data = serviceData[serviceKey];
+            if (data && modal) {
+                modalTitle.textContent = data.title;
+                modalDesc.textContent = data.description;
+                modalGallery.innerHTML = '';
+                data.images.forEach(imgUrl => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    img.alt = data.title;
+                    modalGallery.appendChild(img);
+                });
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    const closeHandler = () => {
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+    if (closeModal) closeModal.addEventListener('click', closeHandler);
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) closeHandler();
+    });
 });
