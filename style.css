@@ -875,17 +875,36 @@ footer {
 /* --- Blog Section --- */
 
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding-bottom: 30px;
+    scrollbar-width: none;
+    cursor: grab;
 }
 
-/* --- Blog Section Refined --- */
+.blog-grid::-webkit-scrollbar { display: none; }
+
 .blog-card {
+    flex: 0 0 clamp(300px, 80vw, 400px);
     background: transparent;
     border: 1px solid var(--glass-border);
     overflow: hidden;
     transition: var(--transition-slow);
+}
+
+@media (min-width: 992px) {
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+        overflow-x: visible;
+        cursor: default;
+    }
+    
+    .blog-card {
+        flex: none;
+    }
 }
 
 .blog-card:hover {

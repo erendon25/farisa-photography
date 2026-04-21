@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Control de desplazamiento horizontal (Rueda + Arrastrar)
-    const horizontalSections = document.querySelectorAll('.gallery-scroll, .services-grid, .plans-grid');
+    const horizontalSections = document.querySelectorAll('.gallery-scroll, .services-grid, .plans-grid, .blog-grid');
     
     horizontalSections.forEach(section => {
         // 1. Desplazamiento con la rueda del ratón (Vertical a Horizontal)
