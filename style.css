@@ -20,6 +20,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* --- Grain Texture --- */
@@ -69,7 +71,9 @@ section {
 
 .container {
     max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 /* --- Navigation --- */
@@ -92,43 +96,69 @@ section {
 
 .nav-container {
     position: fixed;
-    top: 30px; 
+    top: 20px; 
     left: 0;
     width: 100%;
-    padding: 0 50px;
+    padding: 0 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 15px;
     z-index: 2000;
 }
 
 .logo {
-    position: absolute; /* Sacamos el logo del flujo para que no empuje el centro */
-    left: 50px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none;
     color: var(--text-color);
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    transition: var(--transition-fast);
 }
 
-nav {
-    margin: 0 auto; /* Centra el nav perfectamente en el contenedor */
+.nav-links {
+    display: flex;
+    gap: 15px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
+    padding: 8px 15px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto; /* Permite scroll lateral si hay muchos links */
+    max-width: 95vw;
+    scrollbar-width: none;
 }
 
-@media (max-width: 992px) {
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-links a {
+    font-size: 0.65rem;
+    white-space: nowrap;
+}
+
+@media (min-width: 992px) {
     .nav-container {
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
+        top: 30px;
+        padding: 0 50px;
+        flex-direction: row;
+        justify-content: space-between;
     }
     
     .logo {
-        position: relative;
-        left: 0;
-        margin-bottom: 20px;
+        position: absolute;
+        left: 50px;
+        font-size: 1.8rem;
+    }
+
+    .nav-links {
+        padding: 12px 35px;
+        gap: 40px;
+        max-width: none;
+    }
+
+    .nav-links a {
+        font-size: 0.75rem;
     }
 }
 
@@ -350,7 +380,7 @@ nav::-webkit-scrollbar { display: none; }
 }
 
 .hero-content h1 {
-    font-size: clamp(6rem, 25vw, 22rem);
+    font-size: clamp(3rem, 12vw, 12rem); /* Más pequeño en móvil para evitar desborde */
     text-transform: uppercase;
     letter-spacing: 0.15em;
     opacity: 0;
@@ -871,9 +901,19 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .contact-container { flex-direction: column; }
-    .gallery-item { flex: 0 0 90vw; }
-    .testimonial-card { padding: 30px; }
-    .testimonial-quote { font-size: 1.5rem; }
+    .hero-content {
+        bottom: 15vh;
+    }
+
+    .gallery-item { 
+        flex: 0 0 85vw; 
+    }
+
+    .testimonial-card { 
+        padding: 40px 20px; 
+    }
+
+    .testimonial-quote { 
+        font-size: 1.4rem; 
+    }
 }
