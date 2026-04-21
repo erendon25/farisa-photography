@@ -99,57 +99,62 @@ section {
     top: 20px; 
     left: 0;
     width: 100%;
-    padding: 0 20px;
+    height: auto;
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* Centra el nav links por defecto */
     align-items: center;
-    gap: 15px;
-    z-index: 2000;
+    padding: 0 20px;
+    z-index: 2100;
 }
 
 .logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
     text-decoration: none;
-    color: var(--text-color);
+    color: #ffffff;
     letter-spacing: 4px;
     text-transform: uppercase;
+    position: absolute;
+    left: 20px; /* Pegado a la izquierda en móvil */
+    top: -5px; /* Ajuste fino */
 }
 
 .nav-links {
     display: flex;
-    gap: 15px;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(15px);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
     padding: 8px 15px;
     border-radius: 100px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow-x: auto; /* Permite scroll lateral si hay muchos links */
-    max-width: 95vw;
+    overflow-x: auto;
+    max-width: 70vw;
     scrollbar-width: none;
-}
-
-.nav-links::-webkit-scrollbar { display: none; }
-
-.nav-links a {
-    font-size: 0.65rem;
-    white-space: nowrap;
+    margin-top: 40px; /* Deja espacio para el logo arriba en móvil */
 }
 
 @media (min-width: 992px) {
     .nav-container {
         top: 30px;
         padding: 0 50px;
-        flex-direction: row;
-        justify-content: space-between;
+        margin-top: 0;
     }
     
     .logo {
         position: absolute;
         left: 50px;
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 1.8rem;
     }
+
+    .nav-links {
+        margin-top: 0;
+        padding: 12px 35px;
+        gap: 40px;
+        max-width: none;
+    }
+}
 
     .nav-links {
         padding: 12px 35px;
