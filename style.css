@@ -154,13 +154,6 @@ section {
         gap: 40px;
         max-width: none;
     }
-}
-
-    .nav-links {
-        padding: 12px 35px;
-        gap: 40px;
-        max-width: none;
-    }
 
     .nav-links a {
         font-size: 0.75rem;
