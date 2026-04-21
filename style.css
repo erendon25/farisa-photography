@@ -96,62 +96,66 @@ section {
 
 .nav-container {
     position: fixed;
-    top: 20px; 
+    top: 15px; 
     left: 0;
     width: 100%;
-    height: auto;
     display: flex;
-    justify-content: center; /* Centra el nav links por defecto */
+    flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    gap: 12px;
+    padding: 0 15px;
     z-index: 2100;
 }
 
 .logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     text-decoration: none;
     color: #ffffff;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    position: absolute;
-    left: 20px; /* Pegado a la izquierda en móvil */
-    top: -5px; /* Ajuste fino */
+    text-align: center;
 }
 
 .nav-links {
     display: flex;
-    background: rgba(10, 10, 10, 0.85);
+    background: rgba(10, 10, 10, 0.9);
     backdrop-filter: blur(20px);
-    padding: 8px 15px;
+    padding: 8px 12px;
     border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     overflow-x: auto;
-    max-width: 70vw;
+    max-width: 90vw; /* Asegura que no se salga de la pantalla */
     scrollbar-width: none;
-    margin-top: 40px; /* Deja espacio para el logo arriba en móvil */
+}
+
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-links a {
+    font-size: 0.6rem;
+    padding: 8px 12px;
+    white-space: nowrap;
 }
 
 @media (min-width: 992px) {
     .nav-container {
         top: 30px;
+        flex-direction: row;
+        justify-content: center;
         padding: 0 50px;
-        margin-top: 0;
     }
     
     .logo {
         position: absolute;
         left: 50px;
-        top: 50%;
-        transform: translateY(-50%);
         font-size: 1.8rem;
+        letter-spacing: 5px;
     }
 
     .nav-links {
-        margin-top: 0;
         padding: 12px 35px;
-        gap: 40px;
+        gap: 30px;
         max-width: none;
     }
 
@@ -299,20 +303,21 @@ nav::-webkit-scrollbar { display: none; }
 
 .focus-frame {
     position: absolute;
-    width: 350px;
-    height: 350px;
+    width: clamp(200px, 80vw, 350px);
+    height: clamp(200px, 80vw, 350px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Eliminamos transición CSS para que el motor JS tome el control */
-    transition: opacity 0.5s ease;
-    opacity: 1;
+    display: none; /* Oculto en móvil */
+}
+
+@media (min-width: 992px) {
+    .focus-frame {
+        display: flex;
+    }
 }
 
 /* El punto de mira (crosshair) central como en Exvia */

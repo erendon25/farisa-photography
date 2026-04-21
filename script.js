@@ -15,21 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentY = targetY; // Posición actual del marco
     
     // Función de interpolación lineal (Lerp)
+    // Función de interpolación lineal (Lerp)
     const lerp = (start, end, factor) => start + (end - start) * factor;
 
     const animateFocus = () => {
-        // Suavizamos el movimiento (0.08 es el factor de 'fricción/suavidad')
+        const isMobile = window.innerWidth < 992;
+        
+        // Suavizamos el movimiento
         currentX = lerp(currentX, targetX, 0.08);
         currentY = lerp(currentY, targetY, 0.08);
 
         const rect = hero.getBoundingClientRect();
 
-        // 1. Mueve el marco físico
+        // 1. Mueve el marco físico (solo visible en desktop por CSS)
         focusFrame.style.left = `${currentX}px`;
         focusFrame.style.top = `${currentY}px`;
 
         // 2. Sincroniza la máscara de revelado (clip-path)
-        const frameSize = 350; 
+        // Reducimos el tamaño del revelado en móviles para un look más íntimo
+        const frameSize = isMobile ? 220 : 350; 
         const halfSize = frameSize / 2;
 
         const top = currentY - halfSize;
@@ -39,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         heroReveal.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px)`;
 
-        // Ejecuta el siguiente frame
         requestAnimationFrame(animateFocus);
     };
 
